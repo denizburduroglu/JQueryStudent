@@ -1,0 +1,7 @@
+[contenteditable="true"] {
+    background-color: yellow;
+}
+
+[contenteditable="true"]:focus {
+    background-color: red;
+}
