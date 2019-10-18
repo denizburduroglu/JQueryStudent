@@ -35,39 +35,44 @@ $(document).ready(function(){
         hide();
     })
 
+    // $("#myInput").on("keyup", function() {
+    //     var value = $(this).val().toLowerCase();
+    //     $("#myTable tr").filter(function() {
+    //       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    //     });
+    // });
+    
 
     var current;
     $(document).on("click", "td", function(e) {
         if(current !== $(this) && current != null) {
-            //set value
-            var val = current.html();
-            var regex = /(\d+)/;
-            var result = regex.exec(current.attr("id"));
-            var row = result[0];
-            regex = /([A-z]+)/;
-            result = regex.exec(current.attr("id"));
-            var key = result[0];
-            [
-                {
-                    "firstname" : "Stephan",
-                    "lastname" : "Yu",
-                    "email" : "stephan@itlize.com",
-                    "location" : ,
-                    "phone" : "2021231234",
-                    "address" : {
-                        "communication": "Itlize, Piscataway, New Jersey",
-                        "permanent" : "China"
-                    },
-                    "marks" : {
-                        "english" : "70",
-                        "science" : "80",
-                        "computers" : "90",
-                        "hardware" : "80"
+            //set row
+            var $r = current.closest('tr');
+            var row = $r.attr('id');
+            var arr = [];
+            $r.each(function(e) {
+                var x = $(this).children();
+                var isFirst = true;
+                x.each(function() {
+                    if(isFirst) {
+                        isFirst = false;
+                    } else {
+                        arr.push($(this).text());
                     }
-                }
-            ]
-        
-            console.log(json[row].p);
+                });
+            });
+
+            json[row].firstname = arr[0];
+            json[row].lastname = arr[1];
+            json[row].email = arr[2];
+            json[row].location = arr[3].toLowerCase();
+            json[row].phone = arr[4];
+            json[row].address["communication"] = arr[5];
+            json[row].address["permanent"] = arr[6];
+            json[row].marks["english"] = arr[7];
+            json[row].marks["science"] = arr[8];
+            json[row].marks["computers"] = arr[9];
+            json[row].marks["hardware"] = arr[10];
         }
         if($(this).attr("contentEditable") == true){
             $(this).attr("contentEditable","false");
@@ -77,6 +82,44 @@ $(document).ready(function(){
         }
     });
 });
+
+function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = $("myInput");
+    filter = input.val().toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  
+function formBtn() {
+    var fn = $('#FNInput').val() + "";
+    var ln = $('#LNInput').val()  + "";
+    var e = $('#EInput').val() + "";
+    var l = $('#LInput').val() + "";
+    var p = $('#PInput').val() + "";
+    var c = $('#CInput').val() + "";
+    var per = $('#PerInput').val() + "";
+    var eng = $('#EngInput').val() + "";
+    var s = $('#SInput').val() + "";
+    var comp = $('#CompInput').val() + "";
+    var hard = $('#HardInput').val() + "";
+    var pars = JSON.parse('{"firstname":"'+fn+'","lastname":"'+ln+'","email":"'+e+'","location":"'+l+'","phone":"'+p+'","address":{"communication":"'+c+'","permanent":"'+per+'"},"marks":{"english":"'+eng+'","science":"'+s+'","computers":"'+comp+'","hardware":"'+hard+'"}}');
+    json.push(pars);
+}
 
 function hide() {
     $('td:nth-child(n+9):nth-child(-n+12)').hide();
@@ -112,7 +155,7 @@ function loadData(data) {
         + "<td id='location" + i + "'>";
         //add location with space
         for(let j = 0; j < data[i].location.length; j++) {
-            str += data[i].location[j] + " ";
+            str += data[i].location[j];
         }
         //phone
         str += "</td>" 

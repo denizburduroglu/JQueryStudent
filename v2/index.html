@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    First name:<input type="text" id="FNInput">
+    Last name:<input type="text" id="LNInput"><br>
+    Email:<input type="text" id="EInput">
+    Location:<input type="text" id="LInput"><br>
+    Phone:<input type="text" id="PInput">
+    Communication:<input type="text" id="CInput"><br>
+    Permanent:<input type="text" id="PerInput">
+    English:<input type="text" id="EngInput"><br>
+    Science:<input type="text" id="SInput">
+    Computers:<input type="text" id="CompInput"><br>
+    Hardware:<input type="text" id="HardInput">
+    <button onclick="formBtn();">Submit</button>
+    <br>
+    <br>
     <select id='recordNum'>
         <option value='10'>10</option>
         <option value='20'>20</option>
@@ -16,7 +30,8 @@
     <button onclick="showMore()">Show More!</button>
     <button onclick="deleteRow()">Delete Row</button>
     <button onclick="editValues()">Edit</button>
-    <table id="table">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+    <table id="table myTable">
         <caption>Student Management</caption>
         <thead class="thead-dark">
             
