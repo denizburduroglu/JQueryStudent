@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <select id='recordNum'>
@@ -12,31 +13,39 @@
         <option value='50'>50</option>
         <option value='100'>100</option>
     </select>
-    <table id="dataTable">
+    <button onclick="showMore()">Show More!</button>
+    <button onclick="deleteRow()">Delete Row</button>
+    <button onclick="editValues()">Edit</button>
+    <table id="table">
         <caption>Student Management</caption>
         <thead class="thead-dark">
+            
             <tr>
-                <th rowspan="2"></th>
+                <th rowspan="2">Select</th>
                 <th rowspan="2">First Name</th>
                 <th rowspan="2">Last Name</th>
                 <th rowspan="2">Email</th>
                 <th rowspan="2">Location</th>
                 <th rowspan="2">Phone</th>
                 <th colspan="2">Address</th>
-                <th colspan="4">Marks</th>
+                <th colspan="4" class='marks'>Marks</th>
             </tr>
         
             <tr>
                 <th>Communication</th>
                 <th>Permanent</th>
-                <th>English</th>
-                <th>Science</th>
-                <th>Computers</th>
-                <th>Hardware</th>
+                <th class='marks'>English</th>
+                <th class='marks'>Science</th>
+                <th class='marks'>Computers</th>
+                <th class='marks'>Hardware</th>
             </tr>
         </thead>
+        <tbody id="dataTable">
+
+        </tbody>
     </table>
 </body>
 
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
 <script src="script.js"></script>
 </html>
